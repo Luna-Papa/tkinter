@@ -24,7 +24,7 @@ def frame2_sfcx():
     id_no = frame2_identity.get()
     org_no = frame2_organization.get()
     account = frame2_account.get()
-    if not (id_no.strip() and org_no.strip() and account.strip()):
+    if not (id_no.strip() or org_no.strip() or account.strip()):
         messagebox.showerror('', '未输入任何值！')
     else:
         open_date_query(id_no, org_no, account)
