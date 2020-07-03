@@ -8,7 +8,7 @@ def sfcx(account, begin_date, end_date=''):
     ssh.connect(hostname='10.0.134.110', port=22, username='hisusr', password='hisusr')
 
     stdin, stdout, stderr = ssh.exec_command(
-        '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/sfcx.sh {account} {begin_date} {end_date}'
+        '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/cx.sh {account} {begin_date} {end_date}'
             .format(account=account, begin_date=begin_date, end_date=end_date))
 
 

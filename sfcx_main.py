@@ -14,9 +14,9 @@ def frame1_sfcx():
     if not account.strip():
         messagebox.showerror('', '未输入账号！')
     elif not begin_date.strip():
-        messagebox.showerror('', '未输入查询日期')
+        messagebox.showerror('', '未输入查询日期！')
     else:
-        sfcx(account, begin_date, end_date)
+        sfcx(account.strip(), begin_date.strip(), end_date.strip())
         messagebox.showinfo('', '请求已提交后台')
 
 
@@ -27,7 +27,7 @@ def frame2_sfcx():
     if not (id_no.strip() or org_no.strip() or account.strip()):
         messagebox.showerror('', '未输入任何值！')
     else:
-        open_date_query(id_no, org_no, account)
+        open_date_query(id_no.strip(), org_no.strip(), account.strip())
         messagebox.showinfo('', '请求已提交后台')
 
 
