@@ -4,7 +4,7 @@ from tkinter import scrolledtext
 from tkinter import Menu
 from tkinter import messagebox
 from datetime import datetime
-from sfcx import sfcx, open_date_query
+from sfcx import sfcx, open_date_query, pos_query
 
 
 def frame1_sfcx():
@@ -30,6 +30,16 @@ def frame2_sfcx():
         open_date_query(id_no.strip(), org_no.strip(), account.strip())
         messagebox.showinfo('', '请求已提交后台')
 
+
+def frame3_sfcx():
+    account = frame3_account.get()
+    date = frame3_date.get()
+    amt = frame3_amt.get()
+    if not (account.strip() and date.strip() and amt.strip()):
+        messagebox.showerror('', '输入不完整！')
+    else:
+        pos_query(account.strip(), date.strip(), amt.strip())
+        messagebox.showinfo('', '请求已提交后台')
 
 # ==============================================
 # GUI Layout
@@ -118,6 +128,46 @@ frame2_account_entered.grid(column=1, row=5, pady=2, padx=5, sticky='W')
 # Adding a Button
 frame2_action = ttk.Button(frame2, text="开始查询", command=frame2_sfcx)
 frame2_action.grid(column=1, row=6, pady=5)
+
+# ==============================================
+# 根据卡号、日期、金额查询商户信息
+# ==============================================
+
+# Create a container to hold labels
+frame3 = ttk.LabelFrame(win, text="根据卡号、日期、金额查询商户信息")
+frame3.grid(column=0, row=7, padx=10, pady=5)
+
+# Adding Labels
+frame3_label_account = ttk.Label(frame3, text="请输入卡号：       ")
+frame3_label_account.grid(column=0, row=7, sticky='W', pady=2, padx=5)
+
+# Adding Text boxes Entry widget
+frame3_account = tk.StringVar()
+frame3_account_entered = ttk.Entry(frame3, width=30, textvariable=frame3_account)
+frame3_account_entered.grid(column=0, row=8, pady=2, padx=5, sticky='W')
+
+# Adding Labels
+frame3_label_date = ttk.Label(frame3, text="请输入8位交易日期：       ")
+frame3_label_date.grid(column=0, row=9, sticky='W', pady=2, padx=5)
+
+# Adding  Text boxes Entry widget
+frame3_date = tk.StringVar()
+frame3_date_entered = ttk.Entry(frame3, width=30, textvariable=frame3_date)
+frame3_date_entered.grid(column=0, row=10, pady=2, padx=5, sticky='W')
+
+# Adding Labels
+frame3_label_amt = ttk.Label(frame3, text="请输入交易金额：       ")
+frame3_label_amt.grid(column=0, row=11, sticky='W', pady=2, padx=5)
+
+# Adding  Text boxes Entry widget
+frame3_amt = tk.StringVar()
+frame3_amt_entered = ttk.Entry(frame3, width=30, textvariable=frame3_amt)
+frame3_amt_entered.grid(column=0, row=12, pady=2, padx=5, sticky='W')
+
+# Adding a Button
+frame3_action = ttk.Button(frame3, text="开始查询", command=frame3_sfcx)
+frame3_action.grid(column=0, row=13, pady=5)
+
 # =====================================
 # MENU GUI
 # =====================================

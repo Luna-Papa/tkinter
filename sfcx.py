@@ -30,3 +30,14 @@ def open_date_query(id_no='', org_no='', account=''):
         stdin, stdout, stderr = ssh.exec_command(
             '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/kh_zh.sh {account}'
                 .format(account=account))
+
+
+def pos_query(account, date, amt):
+    # 开启SSH通道
+    ssh = paramiko.SSHClient()
+    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    ssh.connect(hostname='10.0.134.110', port=22, username='hisusr', password='hisusr')
+
+    stdin, stdout, stderr = ssh.exec_command(
+        '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/pos.sh {account} {date} {amt}'
+            .format(account=account, begin_date=date, end_date=amt))
