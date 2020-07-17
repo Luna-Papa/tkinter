@@ -12,7 +12,7 @@ def sfcx(account, begin_date, end_date=''):
             .format(account=account, begin_date=begin_date, end_date=end_date))
 
 
-def open_date_query(id_no='', org_no='', account=''):
+def open_date_query(id_no='', org_no='', account='', name=''):
     # 开启SSH通道
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -30,6 +30,10 @@ def open_date_query(id_no='', org_no='', account=''):
         stdin, stdout, stderr = ssh.exec_command(
             '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/kh_zh.sh {account}'
                 .format(account=account))
+    if name.strip():
+        stdin, stdout, stderr = ssh.exec_command(
+            '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/kh_mc_dg.sh {name}'
+                .format(name=name))
 
 
 def pos_query(account, date, amt):
