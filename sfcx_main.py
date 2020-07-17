@@ -3,7 +3,6 @@ from tkinter import ttk
 from tkinter import scrolledtext
 from tkinter import Menu
 from tkinter import messagebox
-from datetime import datetime
 from sfcx import sfcx, open_date_query, pos_query
 
 
@@ -133,7 +132,7 @@ frame2_label_name.grid(column=1, row=2, sticky='W', pady=2, padx=5)
 
 # Adding Text boxes Entry widget
 frame2_name = tk.StringVar()
-frame2_name_entered = ttk.Entry(frame2, width=30, textvariable=frame2_identity)
+frame2_name_entered = ttk.Entry(frame2, width=30, textvariable=frame2_name)
 frame2_name_entered.grid(column=1, row=3, pady=2, padx=5, sticky='W')
 
 # Adding a Button
@@ -188,11 +187,11 @@ win.config(menu=menu_bar)
 
 
 def _aboutmsg():
-    messagebox.showinfo('开发信息', '开发人员：胡鹏\n版本：V1.1\n发版日期：2020-7-2')
+    messagebox.showinfo('开发信息', '开发人员：胡鹏\n版本：V1.2\n发版日期：2020-7-17')
 
 
 def _info():
-    messagebox.showinfo('使用说明', '增加查询客户开户信息的功能')
+    messagebox.showinfo('使用说明', '增加根据对公客户名称查询')
 
 
 help_menu = Menu(menu_bar, tearoff=0)

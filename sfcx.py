@@ -18,19 +18,19 @@ def open_date_query(id_no='', org_no='', account='', name=''):
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(hostname='10.0.134.110', port=22, username='hisusr', password='hisusr')
 
-    if id_no.strip():
+    if id_no:
         stdin, stdout, stderr = ssh.exec_command(
             '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/kh_zj_ds.sh {id_no}'
                 .format(id_no=id_no))
-    if org_no.strip():
+    if org_no:
         stdin, stdout, stderr = ssh.exec_command(
             '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/kh_zj_dg.sh {org_no}'
                 .format(org_no=org_no))
-    if account.strip():
+    if account:
         stdin, stdout, stderr = ssh.exec_command(
             '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/kh_zh.sh {account}'
                 .format(account=account))
-    if name.strip():
+    if name:
         stdin, stdout, stderr = ssh.exec_command(
             '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/kh_mc_dg.sh {name}'
                 .format(name=name))
@@ -44,4 +44,4 @@ def pos_query(account, date, amt):
 
     stdin, stdout, stderr = ssh.exec_command(
         '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/pos.sh {account} {date} {amt}'
-            .format(account=account, begin_date=date, end_date=amt))
+            .format(account=account, date=date, amt=amt))
