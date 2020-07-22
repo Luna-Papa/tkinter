@@ -34,11 +34,16 @@ def open_date_query(id_no='', org_no='', account='', name=''):
             '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/kh_zh.sh {account}'
                 .format(account=account))
     if name:
+        transport = paramiko.Transport(("10.0.134.110", 22))
+        transport.connect(username='hisusr', password='hisusr')
+        sftp = paramiko.SFTPClient.from_transport(transport)
+        with open('c:/dg_name.txt', 'w', encoding='gbk') as f:
+            f.write(name)
+        sftp.put('c:/dg_name.txt', '/datatmp/sjm/YX_SFCX/dg_name.txt')
+        sftp.close()
+
         stdin, stdout, stderr = ssh.exec_command(
-            'echo {name} > {name}.txt'.format(name=name))
-        # stdin, stdout, stderr = ssh.exec_command(
-        #     '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/kh_mc_dg.sh {name}'
-        #         .format(name=name))
+            '. /dbhome/hisusr/.profile;sh /datatmp/sjm/YX_SFCX/kh_mc_dg.sh')
 
 
 def pos_query(account, date, amt):
