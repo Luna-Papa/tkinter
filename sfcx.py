@@ -37,9 +37,9 @@ def open_date_query(id_no='', org_no='', account='', name=''):
         transport = paramiko.Transport(("10.0.134.110", 22))
         transport.connect(username='hisusr', password='hisusr')
         sftp = paramiko.SFTPClient.from_transport(transport)
-        with open('c:/dg_name.txt', 'w', encoding='gbk') as f:
+        with open('c:/sfcx/dg_name.txt', 'w', encoding='gbk') as f:
             f.write(name)
-        sftp.put('c:/dg_name.txt', '/datatmp/sjm/YX_SFCX/dg_name.txt')
+        sftp.put('c:/sfcx/dg_name.txt', '/datatmp/sjm/YX_SFCX/dg_name.txt')
         sftp.close()
 
         stdin, stdout, stderr = ssh.exec_command(

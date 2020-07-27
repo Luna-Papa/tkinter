@@ -4,6 +4,8 @@ from tkinter import scrolledtext
 from tkinter import Menu
 from tkinter import messagebox
 from sfcx import sfcx, open_date_query, pos_query
+from tkinter import filedialog
+from readSFCX import sfcx_batch_query
 
 
 def frame1_sfcx():
@@ -41,6 +43,11 @@ def frame3_sfcx():
         pos_query(account.strip(), date.strip(), amt.strip())
         messagebox.showinfo('', '请求已提交后台')
 
+
+def frame1_sfcx_batch():
+    file_name = filedialog.askopenfilename(title='选择文件')
+    sfcx_batch_query(file_name)
+    messagebox.showinfo('', '批量请求已提交后台')
 
 # ==============================================
 # GUI Layout
@@ -89,7 +96,11 @@ frame1_date2_entered.grid(column=0, row=5, pady=2, padx=5, sticky='W')
 
 # Adding a Button
 frame1_action = ttk.Button(frame1, text="开始查询", command=frame1_sfcx)
-frame1_action.grid(column=0, row=6, pady=5)
+frame1_action.grid(column=0, row=6, pady=5, sticky='W', padx=5)
+
+# Adding a Button
+frame1_action = ttk.Button(frame1, text="批量查询", command=frame1_sfcx_batch)
+frame1_action.grid(column=0, row=6, pady=5, sticky='E', padx=5)
 
 # ==============================================
 # 根据证件号码或账号查询开户信息
